@@ -165,7 +165,7 @@ for epoch in range(start_epoch, epochs, 1):
                       "lr_scheduler": lr_scheduler,
                       "epochs_since_improvement": epochs_since_improvement,
                       }
-        torch.save(model_dict, os.path.join(suffix_path + model_path))
+        torch.save(model_dict, os.path.join(suffix_path, model_path))
         if is_best:
             torch.save(model_dict, os.path.join(suffix_path, "Best_" + model_path))
 
