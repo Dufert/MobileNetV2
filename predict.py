@@ -50,15 +50,16 @@ if __name__ == "__main__":
         img = img.unsqueeze(0)  # 将输入改成1*shape
 
         y_pred = model(img)
-        _, result = torch.max(y_pred, 1)  # torch max 第二项 0为每列的最大值, 1为每行的最大值, 返回第一个为最大值,第二个为最大值的索引
+        pred = torch.sigmoid(y_pred)
+        percent, result = torch.max(pred, 1)  # torch max 第二项 0为每列的最大值, 1为每行的最大值, 返回第一个为最大值,第二个为最大值的索引
 
-        log.info(classes[result.item()])  # result
+        # log.info("predict: {} is {}".format(round(percent.item(), 4), classes[result.item()]))  # result
 
         if result.item() == 0:
             color = (0, 0, 255)
         else:
             color = (0, 255, 0)
-        cv2.putText(show_img, classes[result.item()], (20, 50), 1, 1, color, 1)
+        cv2.putText(show_img, str(round(percent.item(),4))+" : "+classes[result.item()], (20, 50), 2, 1, color, 1)
         cv2.imshow("predict", show_img)
         k = cv2.waitKey(20)
         if k == ord('q'):
