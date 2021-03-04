@@ -1,6 +1,7 @@
 #
 # Created by orange on 2021/3/3.
 #
+
 import os
 import glog as log
 import numpy as np
@@ -13,6 +14,7 @@ import torchvision.transforms as tf
 
 from anyDataSetClass import anyDataSetClass
 from mobileNetV2Class import mobileNetV2Class
+
 
 def train(train_data_loader, loss_fn, optim, data_set_number):
     data_number = 0
@@ -73,6 +75,7 @@ def validation(val_data_loader, data_set_number):
 
         return val_acc_node, val_loss_node
 
+
 train_tf = tf.Compose([tf.RandomResizedCrop((224, 224), scale=(0.9, 1.0)),
                        tf.RandomHorizontalFlip(0.5),
                        tf.ToTensor(),
@@ -132,10 +135,6 @@ else:
 
 loss_fn = nn.CrossEntropyLoss()
 
-
-
-
-
 ta_tl_va_vl = []
 
 for epoch in range(start_epoch, epochs, 1):
@@ -177,4 +176,3 @@ for i in range(ta_tl_va_vl.shape[1]):
     plt.plot(ta_tl_va_vl[:, i])
 plt.xlabel('epoch')
 plt.show()
-

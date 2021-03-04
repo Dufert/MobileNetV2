@@ -2,11 +2,8 @@
 # Created by orange on 2021/3/3.
 #
 
-import glog as log
-import torch
 import torchvision
 import torch.nn as nn
-import torchvision.models as models
 
 
 # net 子结构
