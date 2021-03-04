@@ -20,6 +20,7 @@ class anyDataSetClass(Dataset):
         self.tf = tf
         # 按照文件夹名对应class name and label
         class_name_label = {name: label for (label, name) in enumerate(os.listdir(root))}
+        self.class_name = class_name_label.keys()
 
         # 提取文件的abspath label并加到list
         self.img_path_label_list = []
